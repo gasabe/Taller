@@ -6,25 +6,24 @@ import {
   Lock, Email, Person, Visibility, VisibilityOff, Description, Phone
 } from '@mui/icons-material';
 
-
 import '../screens/Login.css';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import RegisterSchema from '../schemas/RegisterSchema';
-//import useRegister from '../hooks/useRegister';
-import logo from '/src/assets/tallerLogoMain.png';
+import logo from '/src/assets/tallerLogoMainmaschico.png';
 
+import useRegisterCliente from '../../Login/hooks/useRegisterCliente.js';
 
 export const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [cedulaFile, setCedulaFile] = useState<File | null>(null);
   const [success, setSuccess] = useState(false);
-  const navigate = useNavigate();
- // const { registerUser, isLoading, error } = useRegister();
-  const error = null; // temporal para que no explote
-  const isLoading = false; // temporal para que no explote
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
 
+  const navigate = useNavigate();
+  const { registerCliente } = useRegisterCliente();
 
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
@@ -47,11 +46,25 @@ export const Register = () => {
     },
     validationSchema: RegisterSchema,
     onSubmit: async (values) => {
-      console.log("Formulario enviado. Aún no conectado a backend.", {
-        ...values,
-        cedulaFile
+      setLoading(true);
+      setErrorMsg(null);
+
+      const { data, error } = await registerCliente({
+        nombre: values.name,
+        telefono: values.phoneNumber,
+        direccion: values.adminName, // si querés cambiar, adaptalo
+        email: values.email
       });
-      setSuccess(true); 
+
+      setLoading(false);
+
+      if (error) {
+        console.error('Error en registro:', error.message);
+        setErrorMsg(error.message);
+      } else {
+        console.log('Cliente registrado:', data);
+        setSuccess(true);
+      }
     },
   });
 
@@ -63,14 +76,13 @@ export const Register = () => {
         <img src={logo} alt="Logo" className="logo-image" />
       </Box>
 
-      {error && (
+      {errorMsg && (
         <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
+          {errorMsg}
         </Alert>
       )}
 
       <Box className="login-form" component="form" onSubmit={formik.handleSubmit}>
-        
         <InputLabel className="input-label input-label--login" htmlFor="name">
           Nombre completo
         </InputLabel>
@@ -79,7 +91,6 @@ export const Register = () => {
           fullWidth
           id="name"
           name="name"
-          type="text"
           value={formik.values.name}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -125,7 +136,6 @@ export const Register = () => {
           fullWidth
           id="phoneNumber"
           name="phoneNumber"
-          type="text"
           value={formik.values.phoneNumber}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -148,7 +158,6 @@ export const Register = () => {
           fullWidth
           id="adminName"
           name="adminName"
-          type="text"
           value={formik.values.adminName}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
@@ -162,32 +171,6 @@ export const Register = () => {
             ),
           }}
         />
-
-        <InputLabel className="input-label input-label--login" htmlFor="cedulaFile">
-          Imagen de cédula del auto
-        </InputLabel>
-        <Button
-          variant="outlined"
-          component="label"
-          fullWidth
-          startIcon={<Description />}
-          sx={{ mt: 1, mb: 2 }}
-        >
-          Subir imagen
-          <input
-            type="file"
-            id="cedulaFile"
-            name="cedulaFile"
-            accept="image/*"
-            hidden
-            onChange={handleFileChange}
-          />
-        </Button>
-        {cedulaFile && (
-          <Typography variant="body2" sx={{ mb: 2 }}>
-            Archivo seleccionado: {cedulaFile.name}
-          </Typography>
-        )}
 
         <InputLabel className="input-label input-label--login" htmlFor="password">
           Contraseña
@@ -211,11 +194,7 @@ export const Register = () => {
             ),
             endAdornment: (
               <InputAdornment position="end">
-                <IconButton
-                  onClick={togglePasswordVisibility}
-                  edge="end"
-                  aria-label="toggle password visibility"
-                >
+                <IconButton onClick={togglePasswordVisibility} edge="end">
                   {showPassword ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
@@ -251,10 +230,10 @@ export const Register = () => {
           type="submit"
           variant="contained"
           fullWidth
-          disabled={isLoading}
+          disabled={loading}
           sx={{ mt: 3, mb: 2 }}
         >
-          {isLoading ? <CircularProgress size={24} color="inherit" /> : 'Registrarse'}
+          {loading ? <CircularProgress size={24} color="inherit" /> : 'Registrarse'}
         </Button>
 
         <Button fullWidth sx={{ mt: 2 }}>
@@ -277,7 +256,6 @@ export const Register = () => {
             </Typography>
           </Typography>
         </Button>
-
       </Box>
     </div>
   );
