@@ -4,11 +4,11 @@ import { Menu, ExitToApp, Person, VolunteerActivism } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom';
 import * as colors from '../theme/colors';  
 
-const logo = "src/assets/logoMerendAppColor.png"
+const logo = "src/assets/tallerLogo.png"
 
 const menuItems = [
-  { text: "Donaciones", icon: <VolunteerActivism sx={{ color: colors.secondary }} /> },
-  { text: "Perfil", icon: <Person sx={{ color: colors.secondary }} /> },
+  { text: "Autos", icon: <VolunteerActivism sx={{ color: colors.secondary }} /> },
+  { text: "Proximos Service", icon: <Person sx={{ color: colors.secondary }} /> },
   { text: "Cerrar sesión", icon: <ExitToApp sx={{ color: colors.secondary }} /> }
 ];
 
@@ -45,7 +45,7 @@ const Navbar = () => {
           <Box
             component="img"
             src={logo}
-            alt="MerendApp Logo"
+            alt="taller THE FRIENDS Logo"
             sx={{ height: 100, display: "block", margin: "0 auto", marginBottom: 5 }}
           />
           {menuItems.map((item, index) => (

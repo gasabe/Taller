@@ -1,86 +1,84 @@
 import { alpha } from '@mui/material/styles'
 
-const withAlphas = (color) => {
-  return {
-    ...color,
-    alpha4: alpha(color.main, 0.04),
-    alpha8: alpha(color.main, 0.08),
-    alpha12: alpha(color.main, 0.12),
-    alpha30: alpha(color.main, 0.3),
-    alpha50: alpha(color.main, 0.5),
-  }
-}
+const withAlphas = (color) => ({
+  ...color,
+  alpha4: alpha(color.main, 0.04),
+  alpha8: alpha(color.main, 0.08),
+  alpha12: alpha(color.main, 0.12),
+  alpha30: alpha(color.main, 0.3),
+  alpha50: alpha(color.main, 0.5),
+})
 
-// Botones
+// Botones principales (amarillo industrial)
 export const primary = withAlphas({
-  lightest: '#e4f5a6',
-  light: '#d1e751',
-  main: '#d1e751',
-  dark: '#b6cc49',
-  darkest: '#9aad42',
+  lightest: '#fff9db',
+  light: '#fff176',
+  main: '#fdd835',
+  dark: '#c6a700',
+  darkest: '#8f7a00',
   contrastText: '#000000',
 })
 
-// Fondo
+// Fondo neutro (metálicos claros)
 export const neutral = {
-  50: '#ffffff',
-  100: '#ffffff',
-  200: '#ffffff',
-  300: '#ffffff',
-  400: '#ffffff',
-  500: '#ffffff',
-  600: '#f5f5f5',
-  700: '#eaeaea',
-  800: '#e0e0e0',
-  900: '#d6d6d6',
+  50: '#f9f9f9',
+  100: '#f3f3f3',
+  200: '#ededed',
+  300: '#e0e0e0',
+  400: '#cfcfcf',
+  500: '#bdbdbd',
+  600: '#9e9e9e',
+  700: '#757575',
+  800: '#616161',
+  900: '#424242',
 }
 
-// Texto (Fuente)
+// Texto (gris casi negro)
 export const grey = withAlphas({
-  lightest: '#333333',
-  light: '#1a1a1a',
-  main: '#000000',
-  dark: '#000000',
+  lightest: '#4f4f4f',
+  light: '#333333',
+  main: '#212121',
+  dark: '#111111',
   darkest: '#000000',
   contrastText: '#ffffff',
 })
 
-// Subtítulos
+// Subtítulos o info (azul mecánico)
 export const info = withAlphas({
-  lightest: '#b3e5fc',
-  light: '#81d4fa',
-  main: '#4dbce9',
-  dark: '#039be5',
-  darkest: '#0277bd',
+  lightest: '#e0f7fa',
+  light: '#80deea',
+  main: '#26c6da',
+  dark: '#0097a7',
+  darkest: '#006064',
   contrastText: '#000000',
 })
 
-// Navbar / Detalles
+// Navbar / detalles (gris acero)
 export const success = withAlphas({
-  lightest: '#a3d5f3',
-  light: '#74c3ef',
-  main: '#26ade4',
-  dark: '#1b87b8',
-  darkest: '#156c94',
+  lightest: '#eceff1',
+  light: '#b0bec5',
+  main: '#78909c',
+  dark: '#546e7a',
+  darkest: '#37474f',
   contrastText: '#ffffff',
 })
 
-// Advertencias
+// Advertencias (naranja óxido)
 export const warning = withAlphas({
-  lightest: '#FFF7E1',
-  light: '#FFEDB5',
-  main: '#F79009',
-  dark: '#B54708',
-  darkest: '#7A2E0E',
+  lightest: '#fff3e0',
+  light: '#ffb74d',
+  main: '#fb8c00',
+  dark: '#e65100',
+  darkest: '#bf360c',
   contrastText: '#000000',
 })
 
-// Errores
+// Errores (rojo intenso)
 export const error = withAlphas({
-  lightest: '#FEE4E2',
-  light: '#FAB7B2',
-  main: '#F04438',
-  dark: '#B42318',
-  darkest: '#7A271A',
-  contrastText: '#FFFFFF',
+  lightest: '#ffebee',
+  light: '#ef9a9a',
+  main: '#e53935',
+  dark: '#b71c1c',
+  darkest: '#7f0000',
+  contrastText: '#ffffff',
 })
