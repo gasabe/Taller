@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <>
       <Typography variant="h1" color="secondary" sx={{ textAlign: "center", padding: 3 }}>
-        HOME COMERCIO
+        TALLER MECANICO THE FRIENDS
         </Typography>
     </>
   );
