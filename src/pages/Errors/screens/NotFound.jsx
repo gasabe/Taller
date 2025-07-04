@@ -36,7 +36,7 @@ function ErrorPage({ status }) {
   const statusInfo = STATUS_DATA[status] || STATUS_DATA[404]; 
 
   const goToLogin = () => {
-    navigate(status === "401" ? "/" : "/home-comedor");
+    navigate(status === "401" ? "/" : "/home-taller");
   };
 
   return (

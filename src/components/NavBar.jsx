@@ -3,7 +3,7 @@ import { AppBar, Toolbar, IconButton, Box, Drawer, List, ListItem, ListItemButto
 import { Menu, ExitToApp, Person, VolunteerActivism } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import * as colors from '../theme/colors';  
-import logo from '../assets/tallerLogo.png'
+import logo from '../assets/tallerLogoMain.png'
 
 
 

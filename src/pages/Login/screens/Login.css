@@ -1,0 +1,200 @@
+:root {
+  /* Primary (amarillo industrial) */
+  --primary-lightest: #fff9db;
+  --primary-light: #fff176;
+  --primary-main: #fdd835;
+  --primary-dark: #c6a700;
+  --primary-darkest: #8f7a00;
+  --primary-contrast: #000000;
+
+  /* Neutral (metálicos claros) */
+  --neutral-50: #f9f9f9;
+  --neutral-100: #f3f3f3;
+  --neutral-200: #ededed;
+  --neutral-300: #e0e0e0;
+  --neutral-400: #cfcfcf;
+  --neutral-500: #bdbdbd;
+  --neutral-600: #9e9e9e;
+  --neutral-700: #757575;
+  --neutral-800: #616161;
+  --neutral-900: #424242;
+
+  /* Grey (texto gris casi negro) */
+  --grey-lightest: #4f4f4f;
+  --grey-light: #333333;
+  --grey-main: #212121;
+  --grey-dark: #111111;
+  --grey-darkest: #000000;
+  --grey-contrast: #ffffff;
+
+  /* Info (azul mecánico) */
+  --info-lightest: #e0f7fa;
+  --info-light: #006064;
+  --info-main: #26c6da;
+  --info-dark: #0097a7;
+  --info-darkest: #006064;
+  --info-contrast: #000000;
+
+  /* Success (gris acero) */
+  --success-lightest: #eceff1;
+  --success-light: #b0bec5;
+  --success-main: #78909c;
+  --success-dark: #546e7a;
+  --success-darkest: #37474f;
+  --success-contrast: #ffffff;
+}
+
+/* Fondo animado */
+.gradient-bg {
+  position: relative;
+  min-height: 100vh;
+  background: var(--neutral-100);
+  overflow: hidden;
+}
+
+.gradient-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    var(--grey-light) 0%,
+    var(--success-main) 30%,
+    var(--primary-light) 70%,
+    var(--neutral-200) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-movement 16s ease infinite;
+  z-index: 0;
+  opacity: 0.9;
+}
+
+@keyframes gradient-movement {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Contenedor principal */
+.layout-content--login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 13px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Logo */
+.logo-container {
+  margin-bottom: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.logo-image {
+  max-width: 250px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+  transition: transform 0.3s ease;
+}
+.logo-image:hover {
+  transform: scale(1.03);
+}
+
+/* Formulario */
+.login-form {
+  font-family: 'Roboto', sans-serif;
+  width: 90%;
+  max-width: 420px;
+  padding: 40px 30px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  z-index: 1;
+}
+.login-form::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(to right, var(--primary-main), var(--success-main));
+  border-radius: 20px 20px 0 0;
+}
+
+/* Inputs */
+.text-field {
+  margin-bottom: 24px;
+}
+.text-field .MuiOutlinedInput-root {
+  background-color: var(--neutral-50);
+  border-radius: 12px;
+  border: 1px solid var(--neutral-300);
+  transition: all 0.3s ease;
+}
+.text-field .MuiOutlinedInput-root:hover {
+  border-color: var(--success-light);
+}
+.text-field .MuiOutlinedInput-root.Mui-focused {
+  border-color: var(--success-main);
+  box-shadow: 0 0 0 3px rgba(120, 144, 156, 0.2); /* success.main */
+}
+.text-field .MuiOutlinedInput-input {
+  padding: 14px 16px;
+  color: var(--grey-main);
+  font-weight: 500;
+}
+.input-label--login {
+  color: var(--grey-light) !important;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: block;
+}
+
+/* Botón gradiente */
+.button-gradient {
+  margin: 32px 0 24px 0;
+  padding: 14px 0;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--primary-main), var(--success-main)) !important;
+  border: none;
+  border-radius: 12px;
+  color: var(--primary-contrast) !important;
+  text-transform: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.button-gradient:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .logo-image { max-width: 220px; }
+  .login-form { padding: 32px 24px; }
+}
+@media (max-width: 480px) {
+  .logo-image { max-width: 200px; }
+  .login-form {
+    padding: 28px 20px;
+    width: 95%;
+  }
+  .button-gradient {
+    margin: 28px 0 20px 0;
+    padding: 12px 0;
+  }
+}
